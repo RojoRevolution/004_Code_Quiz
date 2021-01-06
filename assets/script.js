@@ -1,28 +1,16 @@
 //quiz from https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
-//Object
-// var quiz = {
-//     questions: {
-//         q1: "Inside which HTML element do we put the JavaScript?",
-//         q2: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-//         q3: "The external JavaScript file must contain the <script> tag.",
-//     },
-//     q1Answer: {
-//         option1: "<script>",
-//         option2: "<javascript>",
-//         option3: "<scripting>",
-//         option4: "<js>",
-//     },
-//     q2Answer: {
-//         option1: "<script src='xxx.js'",
-//         option2: "<script name='xxx.js'",
-//         option3: "<script href='xxx.js'",
-//     },
-//     q3Answer: {
-//         option1: 'True',
-//         option2: 'False'
-//     }
-// }
 
+var questions = [
+    ["Inside which HTML element do we put the JavaScript?"],
+    ["What is the correct syntax for referring to an external script called 'xxx.js'?"],
+    ["The external JavaScript file must contain the <script> tag."]
+];
+
+var answers = [
+    ['<script>', '<javascript>', '<scripting>', '<js>'],
+    ['<script src="xxx.js">', '<script name="xxx.js">', '<script href="xxx.js"'],
+    ['True', 'False']
+]
 
 
 
@@ -30,29 +18,52 @@
 var timeEl = document.querySelector(".timer");
 var questionEl = document.querySelector(".question");
 var answerEl = document.querySelector(".answers");
+var getStartedDiv = document.querySelector(".get-started");
+var questionsDiv = document.querySelector(".question1")
+var getStartedBtn = document.querySelector("getStartedBtn")
 
-var creatBtn = document.createElement("button");
 
 var maxTime = 75;
 
-//Function to Start Timer
-function startTime() {
-    var timerInterval = setInterval(function () {
-        maxTime--;
-        timeEl.textContent = maxTime;
-        if (secondsLeft === 0) {
-            clearInterval(timerInterval);
-            sendMessage();
-        }
-    }, 1000);
+function quizStart() {
+    getStartedDiv.setAttribute("class", "hide");
+    startTime();
+    quizGo();
 }
 
+//Function to Start Timer
+// function startTime() {
+//     var timerInterval = setInterval(function () {
+//         maxTime--;
+//         timeEl.textContent = maxTime;
+//         if (secondsLeft === 0) {
+//             clearInterval(timerInterval);
+//             sendMessage();
+//         }
+//     }, 1000);
+// }
+
 //Function to insert Questions
-function quesInsert() {
-    questionEl.textContent = quiz.questions.q1;
-    answerEl.appendChild(creatBtn);
-    creatBtn.setAttribute("class", "button")
-    creatBtn.textContent = quiz.q1Answer.option1;
+function quizGo() {
+    questionsDiv.setAttribute("class", ".show")
+    var questionNum = 0;
+    questionEl.textContent = questions[questionNum];
+
+    for (var i = 0; i < answers[0].length; i++) {
+        var creatLI = document.createElement("li");
+        var creatBtn = document.createElement("button");
+        creatBtn.setAttribute("class", "button")
+        creatBtn.setAttribute("style", "margin:20px auto;")
+        creatBtn.textContent = answers[questionNum][i];
+        answerEl.appendChild(creatLI);
+        creatLI.appendChild(creatBtn);
+    }
 }
-quesInsert()
-// startTime();
+quizGo();
+
+// getStartedBtn.addEventListener("click", function () {
+//     console.log("click")
+//     quizStart()
+// });
+
+// quizGo()
