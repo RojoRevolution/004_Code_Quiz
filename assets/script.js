@@ -1,69 +1,72 @@
-//quiz from https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
+//store all the questions in an array
+var allQuestions = [{
+    question: "How many legs does a spider have?",
+    choices: [6, 4, 8],
+    correctAnswer: 8
+}, {
+    question: "how many legs does a cat have?",
+    choices: [2, 4, 6],
+    correctAnswer: 4
+}, {
+    question: "how many legs do you have?",
+    choices: [2, 4, 6],
+    correctAnswer: 2
+}];
 
-var questions = [
-    ["Inside which HTML element do we put the JavaScript?"],
-    ["What is the correct syntax for referring to an external script called 'xxx.js'?"],
-    ["The external JavaScript file must contain the <script> tag."]
-];
-
-var answers = [
-    ['<script>', '<javascript>', '<scripting>', '<js>'],
-    ['<script src="xxx.js">', '<script name="xxx.js">', '<script href="xxx.js"'],
-    ['True', 'False']
-]
-
-
-
-//Variables
 var timeEl = document.querySelector(".timer");
-var questionEl = document.querySelector(".question");
-var answerEl = document.querySelector(".answers");
-var getStartedDiv = document.querySelector(".get-started");
-var questionsDiv = document.querySelector(".question1")
-var getStartedBtn = document.querySelector("getStartedBtn")
+var startArea = document.querySelector(".startArea")
+var goBtn = document.querySelector(".goBtn")
+var nextBtn = document.querySelector(".next")
+var answerDiv = document.querySelector(".answers")
+
+var currentQuestion = 0;
+var score = 0;
+var timeLimit = 100;
+var choiceBtn;
 
 
-var maxTime = 75;
+function setTime() {
+    var timerInterval = setInterval(function () {
+        timeLimit--;
+        timeEl.textContent = `Time Left: ${timeLimit}`;
 
-function quizStart() {
-    getStartedDiv.setAttribute("class", "hide");
-    startTime();
-    quizGo();
+        if (timeLimit === 0) {
+            clearInterval(timerInterval);
+            console.log("Times Up")
+        }
+
+    }, 1000);
 }
 
-//Function to Start Timer
-// function startTime() {
-//     var timerInterval = setInterval(function () {
-//         maxTime--;
-//         timeEl.textContent = maxTime;
-//         if (secondsLeft === 0) {
-//             clearInterval(timerInterval);
-//             sendMessage();
-//         }
-//     }, 1000);
-// }
+function askQuestion() {
+    var askQuestions = allQuestions[currentQuestion].question;
+    document.querySelector(".question").innerHTML = askQuestions;
+}
 
-//Function to insert Questions
-function quizGo() {
-    questionsDiv.setAttribute("class", ".show")
-    var questionNum = 0;
-    questionEl.textContent = questions[questionNum];
-
-    for (var i = 0; i < answers[0].length; i++) {
-        var creatLI = document.createElement("li");
-        var creatBtn = document.createElement("button");
-        creatBtn.setAttribute("class", "button")
-        creatBtn.setAttribute("style", "margin:20px auto;")
-        creatBtn.textContent = answers[questionNum][i];
-        answerEl.appendChild(creatLI);
-        creatLI.appendChild(creatBtn);
+function currentChoices() {
+    var showChoices = allQuestions[currentQuestion].choices;
+    for (var i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
+        choiceBtn = document.createElement("button");
+        choiceBtn.textContent = showChoices[i];
+        // choiceBtn.classList.add("class", "choiceBtn");
+        choiceBtn.setAttribute("id", "choiceBtn");
+        choiceBtn.setAttribute("class", "btn btn-primary my-2");
+        choiceBtn.setAttribute("value", [i]);
+        answerDiv.appendChild(choiceBtn);
     }
+
 }
-quizGo();
 
-// getStartedBtn.addEventListener("click", function () {
-//     console.log("click")
-//     quizStart()
-// });
+function showNextQuestion() {
+    askQuestion()
+    showChoices()
+}
 
-// quizGo()
+
+askQuestion()
+currentChoices()
+setTime()
+
+choiceBtn.addEventListener('click', function () {
+    console.log('click');
+});

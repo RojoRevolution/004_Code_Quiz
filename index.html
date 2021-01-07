@@ -5,31 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Quiz</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <link rel="stylesheet" href="assets/main.css" type="text/css">
 </head>
 
 <body>
-    <div class="container header">
-        <div class="content">
+    <header class="container-fluid">
+        <div class="container-lg text-center">
             <h1>Super Awesome Cool Quiz</h1>
         </div>
-    </div>
-    <div class="container">
-        <div class="content">
-            <div class="get-started">
-                <div class="button-container">
-                    <button class="getStartedBtn show">Press to Start</button>
+    </header>
+    <main>
+        <div class="container-fluid">
+            <div class="container-lg py-5">
+                <div class="row">
+                    <div class="col-6-xl">View High scores</div>
+                    <div class="col-6-xl timer"></div>
                 </div>
             </div>
-            <div class="question1">
-                <h2>Time Left:<span class="timer">00</span></h2>
-                <hr>
-                <h3 class="question"></h3>
-                <ul class="answers">
-                </ul>
+        </div>
+        <div class="container-fluid startArea">
+            <div class="container-lg text-center">
+                <h2>Press Go To Start</h2>
+                <button class="btn btn-success goBtn">Go!</button>
             </div>
         </div>
-        <script src="assets/script.js"></script>
+        <!-- Questions Start here -->
+        <div class="container-fluid">
+            <div class="container-lg py-5 text-center question-block">
+                <h2 class="question"></h2>
+                <div class="answers"></div>
+                <!-- <next><button class="btn btn-success">Next</button></next> -->
+            </div>
+        </div>
+        <!-- Questions Start here -->
+        <div class="container-fluid">
+            <div class="container-lg py-5 text-center question-block">
+                <h2 class="question"></h2>
+                <div class="answers">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="assets/script.js"></script>
 </body>
 
 </html>

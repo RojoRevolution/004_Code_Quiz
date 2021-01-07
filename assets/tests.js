@@ -1,23 +1,41 @@
-//Object
-// var quiz = {
-//     questions: {
-//         q1: "Inside which HTML element do we put the JavaScript?",
-//         q2: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-//         q3: "The external JavaScript file must contain the <script> tag.",
-//     },
-//     q1Answer: {
-//         option1: "<script>",
-//         option2: "<javascript>",
-//         option3: "<scripting>",
-//         option4: "<js>",
-//     },
-//     q2Answer: {
-//         option1: "<script src='xxx.js'",
-//         option2: "<script name='xxx.js'",
-//         option3: "<script href='xxx.js'",
-//     },
-//     q3Answer: {
-//         option1: 'True',
-//         option2: 'False'
-//     }
-// }
+function clickRadio(elmnt) {
+    var n, i, x;
+    n = elmnt.id;
+    for (i = 1; i < 5; i++) {
+        x = document.getElementById("label" + i);
+        if (x) { x.className = x.className.replace(" checkedlabel", ""); }
+    }
+    document.getElementById("label" + n).className += " checkedlabel";
+}
+
+function clickNextButton(n) {
+    submitAnswer(n + 1);
+}
+
+function submitAnswer(n) {
+    var f = document.getElementById("quizform");
+    f["nextnumber"].value = n;
+    f.submit();
+}
+
+function startTimer() {
+    var tobj = document.getElementById("timespent")
+    var t = "0:00";
+    var s = 00;
+    var d = new Date();
+    var timeint = setInterval(function () {
+        s += 1;
+        d.setMinutes("0");
+        d.setSeconds(s);
+        min = d.getMinutes();
+        sec = d.getSeconds();
+        if (sec < 10) sec = "0" + sec;
+        document.getElementById("timespent").value = min + ":" + sec;
+    }, 1000);
+    tobj.value = t;
+}
+if (window.addEventListener) {
+    window.addEventListener("load", startTimer);
+} else if (window.attachEvent) {
+    window.attachEvent("onload", startTimer);
+}
