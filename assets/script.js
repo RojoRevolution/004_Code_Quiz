@@ -1,28 +1,33 @@
 //store all the questions in an array
 var allQuestions = [{
-    question: "How many legs does a spider have?",
-    choices: [6, 4, 8],
-    correctAnswer: 8
+    question: "1. Inside which HTML element do we put the JavaScript?",
+    choices: ['<script>', '<javascript>', '<scripting>'],
+    correctAnswer: '<script>'
 }, {
-    question: "how many legs does a cat have?",
-    choices: [2, 4, 6],
-    correctAnswer: 4
+    question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
+    choices: ['<script src="xxx.js">', '<script name="xxx.js">', '<script href="xxx.js">'],
+    correctAnswer: '<script src="xxx.js"'
 }, {
-    question: "how many legs do you have?",
-    choices: [2, 4, 6],
-    correctAnswer: 2
+    question: "3. The external JavaScript file must contain the <script> tag.",
+    choices: ['True', 'False', 'Who Knows'],
+    correctAnswer: 'True'
 }];
 
 var timeEl = document.querySelector(".timer");
-var startArea = document.querySelector(".startArea")
-var goBtn = document.querySelector(".goBtn")
-var nextBtn = document.querySelector(".next")
-var answerDiv = document.querySelector(".answers")
+var startArea = document.querySelector(".startArea");
+var goBtn = document.querySelector(".goBtn");
+var nextBtn = document.querySelector(".next");
+var questionDiv = document.querySelector(".question-block");
+var answerDiv = document.querySelector(".answers");
+var statusShow = document.querySelector(".show");
+var statusHide = document.querySelector(".hide");
+
+var allChoiceBtns = document.querySelectorAll(".choices")
 
 var currentQuestion = 0;
 var score = 0;
 var timeLimit = 100;
-var choiceBtn;
+// const answerOptions = document.querySelectorAll('.choices');
 
 
 function setTime() {
@@ -36,37 +41,42 @@ function setTime() {
         }
 
     }, 1000);
+};
+
+function start() {
+    startArea.classList.add("hide");
+    questionDiv.classList.remove("hide");
+    setTime();
+    renderQuiz();
 }
 
-function askQuestion() {
+function renderQuiz() {
     var askQuestions = allQuestions[currentQuestion].question;
     document.querySelector(".question").innerHTML = askQuestions;
-}
-
-function currentChoices() {
+    //Answers
     var showChoices = allQuestions[currentQuestion].choices;
     for (var i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
         choiceBtn = document.createElement("button");
         choiceBtn.textContent = showChoices[i];
-        // choiceBtn.classList.add("class", "choiceBtn");
-        choiceBtn.setAttribute("id", "choiceBtn");
-        choiceBtn.setAttribute("class", "btn btn-primary my-2");
+        choiceBtn.setAttribute("class", "btn btn-primary m-2 choices");
         choiceBtn.setAttribute("value", [i]);
         answerDiv.appendChild(choiceBtn);
     }
-
-}
-
-function showNextQuestion() {
-    askQuestion()
-    showChoices()
+    currentQuestion++;
 }
 
 
-askQuestion()
-currentChoices()
-setTime()
+// function showNextQuestion() {
+//     askQuestion()
+//     showChoices()
+// }
 
-choiceBtn.addEventListener('click', function () {
-    console.log('click');
-});
+
+goBtn.addEventListener("click", function () {
+    console.log("click");
+    start();
+})
+
+
+
+

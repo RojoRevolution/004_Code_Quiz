@@ -7,8 +7,9 @@
     <title>Code Quiz</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
     <link rel="stylesheet" href="assets/main.css" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -26,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid startArea">
+        <div class="container-fluid startArea show">
             <div class="container-lg text-center">
                 <h2>Press Go To Start</h2>
                 <button class="btn btn-success goBtn">Go!</button>
@@ -34,18 +35,10 @@
         </div>
         <!-- Questions Start here -->
         <div class="container-fluid">
-            <div class="container-lg py-5 text-center question-block">
+            <div class="container-lg py-2 text-center question-block hide">
                 <h2 class="question"></h2>
                 <div class="answers"></div>
                 <!-- <next><button class="btn btn-success">Next</button></next> -->
-            </div>
-        </div>
-        <!-- Questions Start here -->
-        <div class="container-fluid">
-            <div class="container-lg py-5 text-center question-block">
-                <h2 class="question"></h2>
-                <div class="answers">
-                </div>
             </div>
         </div>
     </main>
