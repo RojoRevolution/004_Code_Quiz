@@ -1,17 +1,19 @@
 //store all the questions in an array
 var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
-    choices: ['<script>', '<javascript>', '<scripting>'],
-    correctAnswer: '<script>'
+    choices: ['<scripting>', '<javascript>', '<script>'],
+    answer: '3',
 }, {
     question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ['<script src="xxx.js">', '<script name="xxx.js">', '<script href="xxx.js">'],
-    correctAnswer: '<script src="xxx.js"'
+    choices: ['<script name="xxx.js">', '<script src="xxx.js">', '<script href="xxx.js">'],
+    answer: '2',
 }, {
     question: "3. The external JavaScript file must contain the <script> tag.",
     choices: ['True', 'False', 'Who Knows'],
-    correctAnswer: 'True'
+    answer: '1',
 }];
+
+var correctAnswers = ['<script>', '<script src="xxx.js">', 'True']
 
 var timeEl = document.getElementById("timer");
 var startArea = document.getElementById("start-section");
@@ -31,17 +33,29 @@ var statusHide = document.querySelector(".hide");
 var currentQuestion = 0;
 var score = 0;
 var timeLimit = 100;
+var btnValues = []
 // const answerOptions = document.querySelectorAll('.choices');
 
+var answerCheck = allQuestions[currentQuestion].answer;
+
 //===============================================================
-//Attempt at JS event delegation
+//Event delegation - used to access dynamic buttons
 questionContainer.addEventListener("click", function (event) {
     event.preventDefault();
-    if (event.target.matches("button")) {
-        renderQuiz();
+    var btnValue = parseInt(event.target.value);
+    console.log(btnValue)
+    if (btnValue === answerCheck) {
+        alert("Correct!")
+    } else {
+        alert("incorrect")
     }
+
+
+    renderQuiz();
 });
 
+//===============================================================
+//Sets the timer
 function setTime() {
     var timerInterval = setInterval(function () {
         timeLimit--;
@@ -55,6 +69,8 @@ function setTime() {
     }, 1000);
 };
 
+//===============================================================
+//Starts the Quiz
 function start() {
     setTime();
     startArea.classList.add("hide");
@@ -63,8 +79,10 @@ function start() {
     renderQuiz();
 }
 
+//===============================================================
+//Renders the current question / answer options
 function renderQuiz() {
-    console.log(currentQuestion);
+    console.log(`Current Question: ${currentQuestion}`);
     resetState()
     var askQuestions = allQuestions[currentQuestion].question;
     var questionHeader = document.createElement("h2");
@@ -85,9 +103,15 @@ function renderQuiz() {
     currentQuestion++;
 }
 
+//===============================================================
+//Fucntion that checks answers
+function correct() {
+
+}
 
 
-//Clears the dynamic elements before rendering the next set of items
+//===============================================================
+//Deletes the dynamic elements before rendering the next set of items
 function resetState() {
     while (questionDiv.firstChild) {
         questionDiv.removeChild(questionDiv.firstChild);
@@ -97,13 +121,8 @@ function resetState() {
     }
 }
 
-// function showNextQuestion() {
-//     askQuestion()
-//     showChoices()
-// }
-
-
-
+//===============================================================
+//Evente Listener For Initial Start button
 goBtn.addEventListener("click", function () {
     console.log("click");
     start();
