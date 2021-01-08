@@ -1,12 +1,12 @@
 //Questions, Choices, and an Answer key
 var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
-    choices: ['<scripting>', '<script>', '<javascript>'],
-    answer: '1',
+    choices: ['<script>', '<scripting>', '<javascript>'],
+    answer: '0',
 }, {
     question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ['<script name="xxx.js">', '<script src="xxx.js">', '<script href="xxx.js">'],
-    answer: '1',
+    choices: ['<script name="xxx.js">', '<script href="xxx.js">', '<script src="xxx.js">'],
+    answer: '2',
 }, {
     question: "3. The external JavaScript file must contain the < script > tag.",
     choices: ['True', 'False',],
@@ -14,8 +14,8 @@ var allQuestions = [{
 },
 {
     question: "5. How do you write 'Hello World' in an alert box?",
-    choices: ['alertBox("Hello World")', 'msg("Hello World:)', 'msgBox("Hello World)', 'alert("Hello World")'],
-    answer: '3',
+    choices: ['alertBox("Hello World")', 'msg("Hello World:)', 'alert("Hello World)', 'msgBox("Hello World")'],
+    answer: '2',
 },
 {
     question: "5. How do you create a function in JavaScript?",
@@ -24,8 +24,8 @@ var allQuestions = [{
 },
 {
     question: "5. How do you call a function in JavaScript?",
-    choices: ['call myFunction()', 'call function myFunction()', 'myFunction()'],
-    answer: '2',
+    choices: ['myFunction()', 'call function myFunction()', 'call myFunction()'],
+    answer: '0',
 }
 ];
 
@@ -91,9 +91,7 @@ function setTime() {
         //renders the time to the page
         timeEl.textContent = `Time Left: ${timeLimit}`;
         if (timeLimit <= 0) {
-
             clearInterval(timerInterval);
-            console.log("Times Up")
             timeLimit = 50
             gameOver();
         }
@@ -101,12 +99,6 @@ function setTime() {
 
 };
 
-// function quizComplete() {
-//     if (currentQuestion > allQuestions.length) {
-//         timeLimit = 50
-//         gameOver();
-//     }
-// }
 
 //===============================================================
 //Starts the Quiz
@@ -121,7 +113,6 @@ function start() {
 //===============================================================
 //Renders the current question / answer options
 function renderQuiz() {
-    console.log(`Current Question: ${currentQuestion}`);
     resetState()
     var askQuestions = allQuestions[currentQuestion].question;
     var questionHeader = document.createElement("h2");
@@ -132,7 +123,6 @@ function renderQuiz() {
     //Answers
     var showChoices = allQuestions[currentQuestion].choices;
     for (var i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
-        // var choiceBtn = $("#buttons") // jquery
         var choiceBtn = document.createElement("button");
         choiceBtn.textContent = showChoices[i];
         choiceBtn.setAttribute("class", "btn btn-primary m-2 choices");
@@ -154,7 +144,7 @@ function gameOver() {
     //pull score from local storage and render on the page
     yourScore = localStorage.getItem("Score", score);
     var highScoreDiv = document.createElement("div")
-    highScoreDiv.innerText = "You're Score: " + yourScore
+    highScoreDiv.innerText = "You Scored: " + yourScore
     highScoreDiv.setAttribute('class', "Light py-4 my-1")
     startArea.append(highScoreDiv);
 }
@@ -178,6 +168,5 @@ function resetState() {
 //===============================================================
 //Evente Listener For Initial Start button
 goBtn.addEventListener("click", function () {
-    console.log("click");
     start();
 })

@@ -13,28 +13,29 @@
 </head>
 
 <body>
-    <header class="container-fluid header">
+    <header class="container-fluid bg-primary  text-light py-5">
         <div class="container-lg text-center">
-            <h1>Super Awesome Cool Quiz</h1>
+            <h1 class="text-uppercase">Javascript Code Quiz</h1>
         </div>
     </header>
     <main>
-        <div class="container">
-            <div class="container-lg py-5">
+        <div class="container-fluid bg-light rounded">
+            <div class="container py-5">
                 <div class="row justify-content-center">
-                    <div class="col-4">View High scores</div>
-                    <div class="col-4 your-score">Your Score:<span class="span-score"></span></div>
-                    <div id="timer" class="col-4 timer" value="5">Time Left: </div>
+                    <div class="col-6 fw-bold your-score">Your Score:<span class="span-score">--</span></div>
+                    <div id="timer" class="col-6 fw-bold timer" value="5">Time Left: </div>
                 </div>
             </div>
         </div>
         <div class="container">
-            <div id="start-section">
-                <p class="instructions">Finish this timed quiz all about Javacript before time runs out. Press Start to
+            <div id="start-section" class="py-5">
+                <p class="my-3 instructions">Finish this timed quiz all about Javacript before time runs out. Press
+                    Start
+                    to
                     begin.</p>
                 <button id="start-btn" class="btn-lg btn-success start-btn btn my-3">Start</button>
             </div>
-            <div id="question-container" class="my-5">
+            <div id="question-container" class="py-5 hide">
                 <div id="question"></div>
                 <div id="answer-div" class="btn-grid">
                 </div>
