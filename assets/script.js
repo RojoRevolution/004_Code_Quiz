@@ -38,20 +38,9 @@ var timeLimit = 100;
 questionContainer.addEventListener("click", function (event) {
     event.preventDefault();
     if (event.target.matches("button")) {
-        console.log('Click')
-        resetState()
         renderQuiz();
     }
 });
-
-//===============================================================
-//===============================================================
-//Attempt at Jquery event delegation
-// $("questionContainer").on("click", "choiceBtn", function () {
-//     console.log('Inner Click');
-// });
-//===============================================================
-//===============================================================
 
 function setTime() {
     var timerInterval = setInterval(function () {
@@ -75,9 +64,11 @@ function start() {
 }
 
 function renderQuiz() {
+    console.log(currentQuestion);
+    resetState()
     var askQuestions = allQuestions[currentQuestion].question;
-
     var questionHeader = document.createElement("h2");
+    questionHeader.setAttribute('value', [i])
     questionHeader.innerHTML = askQuestions;
     questionDiv.appendChild(questionHeader)
 
@@ -94,12 +85,17 @@ function renderQuiz() {
     currentQuestion++;
 }
 
+
+
+//Clears the dynamic elements before rendering the next set of items
 function resetState() {
     while (questionDiv.firstChild) {
-        questionDiv.removeChild(choiceBtn.firstChild)
+        questionDiv.removeChild(questionDiv.firstChild);
+    }
+    while (answerDiv.firstChild) {
+        answerDiv.removeChild(answerDiv.firstChild);
     }
 }
-
 
 // function showNextQuestion() {
 //     askQuestion()
