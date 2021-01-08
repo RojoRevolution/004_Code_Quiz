@@ -67,8 +67,10 @@ questionContainer.addEventListener("click", function (event) {
         yourScore.innerText = score;
         validateText.innerText = "You are correct :)";
         answerValidationDiv.append(validateText);
-    } else {
+    } else if (score > 0) {
         score -= 5;
+        yourScore.innerText = score;
+    } if (timeLimit > 0) {
         timeLimit -= 10;
         validateText.innerText = "You are incorrect :(";
         answerValidationDiv.append(validateText);
@@ -98,6 +100,7 @@ function setTime() {
     }, 1000);
 
 };
+
 
 
 //===============================================================
