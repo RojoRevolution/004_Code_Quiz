@@ -21,7 +21,8 @@ As I mentioned, I unfortunately was not able to finish the project in the allote
 
 - Did not get a chance to validate/limit btn clicks to 1, so you can click the same button really quick to get more points added.
 
-- The correct / incorrect message should have probably been rendered elsewhere the questions could transition faster
+- The correct / incorrect message should have probably been rendered elsewhere so the questions could transition faster
+
 - Did not add enough question due to time constraints and more question not being my priority.
 
 - Was not able to validate the game when all questions are answered - as such, ending the game this way throws an error. The timer also does not reset when the game ends this way.
