@@ -1,4 +1,4 @@
-//store all the questions in an array
+//Questions, Choices, and an Answer key
 var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
     choices: ['<scripting>', '<script>', '<javascript>'],
@@ -30,85 +30,90 @@ var allQuestions = [{
 ];
 
 
-
-var correctAnswers = ['<script>', '<script src="xxx.js">', 'True']
-
+//variabels pointing to elements that will need to be accessed
 var timeEl = document.getElementById("timer");
 var startArea = document.getElementById("start-section");
 var goBtn = document.getElementById("start-btn");
 var questionContainer = document.getElementById("question-container");
-// var questionContainer = $("#question-container"); /// jQuery
 var questionDiv = document.getElementById("question");
 var answerDiv = document.getElementById("answer-div");
 var answerValidationDiv = document.getElementById("validation");
-// var allChoiceBtns = document.querySelectorAll(".choices")
 
 var yourScore = document.querySelector(".span-score");
-
-var nextBtn = document.querySelector(".next");
+var instructionsP = document.querySelector(".instructions");
 
 var statusShow = document.querySelector(".show");
 var statusHide = document.querySelector(".hide");
 
+//stores the current question that is being rendered
 var currentQuestion = 0;
 var score = 0;
-var timeLimit = 100;
+var timeLimit = 50;
 var btnValues = []
-// const answerOptions = document.querySelectorAll('.choices');
 
-// var answerCheck = allQuestions[currentQuestion].answer;
 
 //===============================================================
 //Event delegation - used to access dynamic buttons
+//The event for this function is the dynamic buttons that are being generated as options
 questionContainer.addEventListener("click", function (event) {
     event.preventDefault();
     var btnValue = event.target.value;
-    console.log("Answer Value" + allQuestions[currentQuestion].answer)
-    console.log("button value:" + btnValue)
-
+    //variable that creates the h2 displaying if you're choice is right or wrong
     var validateText = document.createElement("h2");
-
+    //Validation compares the btn value and the answer index in the array
     if (btnValue == allQuestions[currentQuestion].answer) {
-        // alert("Correct!")
         score += 10;
+        answerValidationDiv.classList.remove("hide")
         yourScore.innerText = score;
         validateText.innerText = "You are correct :)";
         answerValidationDiv.append(validateText);
     } else {
-        // alert("incorrect")
         score -= 5;
         timeLimit -= 10;
         validateText.innerText = "You are incorrect :(";
         answerValidationDiv.append(validateText);
     }
+    //stores the value in the global score variable to local storage
     localStorage.setItem("Score", score);
+    //increases the question count
     currentQuestion++;
+    //timeout function delays the next render so the Correct / Incorrect text can be viewed
     setTimeout(function () { renderQuiz(); }, 1000);
-
-
 });
 
 //===============================================================
 //Sets the timer
 function setTime() {
+    //inner function sets the time interval for 1second
     var timerInterval = setInterval(function () {
+        //time limit descreses every second by 1
         timeLimit--;
+        //renders the time to the page
         timeEl.textContent = `Time Left: ${timeLimit}`;
+        if (timeLimit <= 0) {
 
-        if (timeLimit === 0) {
             clearInterval(timerInterval);
             console.log("Times Up")
+            timeLimit = 50
+            gameOver();
         }
-
     }, 1000);
+
 };
+
+// function quizComplete() {
+//     if (currentQuestion > allQuestions.length) {
+//         timeLimit = 50
+//         gameOver();
+//     }
+// }
 
 //===============================================================
 //Starts the Quiz
 function start() {
     setTime();
+    instructionsP.classList.add("hide");
     startArea.classList.add("hide");
-    // questionContainer.removeClass("hide"); // jQuery
     questionContainer.classList.remove("hide");
     renderQuiz();
 }
@@ -138,10 +143,22 @@ function renderQuiz() {
 }
 
 //===============================================================
-//Fucntion that checks answers
-function correct() {
-
+//Game Over Message + Play Again Button + display your score
+function gameOver() {
+    startArea.classList.remove("hide");
+    questionContainer.classList.add("hide");
+    //display game over message
+    var playAgain = document.createElement("h2");
+    playAgain.innerText = "Times Up! Press start to play again";
+    startArea.append(playAgain);
+    //pull score from local storage and render on the page
+    yourScore = localStorage.getItem("Score", score);
+    var highScoreDiv = document.createElement("div")
+    highScoreDiv.innerText = "You're Score: " + yourScore
+    highScoreDiv.setAttribute('class', "Light py-4 my-1")
+    startArea.append(highScoreDiv);
 }
+
 
 
 //===============================================================
