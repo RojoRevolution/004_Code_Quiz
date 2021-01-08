@@ -1,8 +1,10 @@
 # Timed Quiz with Javascript Built Dynamic Options
 
+[Github Repo](https://rojorevolution.github.io/004_Code_Quiz/)
+
 The goal of this project was to build a multiple choice, timed quiz primarily with Javascript. The project is unfortunately incomplete as I hit a major road block early on which I did not figure out until the final day before it was due. Due to this, I spend the majority of my time trying to build out the Javascript document, as I am already very familiar with HTML and CSS, but am still tryingt to learn Javascript further. 
 
-Given a bit more time I am confident I would have able to deliver a complete and polished product. And I do hope to return and compelte it in the near future
+*Given a bit more time I am confident I would have able to deliver a complete and polished product. And I do hope to return and compelte it in the near future.*
 
 ## Conditions for the project as follows
 
@@ -15,7 +17,7 @@ Given a bit more time I am confident I would have able to deliver a complete and
 
 ## Issues and Incompletes
 
-As I mentioned, I unfortunately was not able to finish the project in the alloted time. The following are some of the things that were left out and or I did not get a chance to fix / tweak
+As I mentioned, I unfortunately was not able to finish the project in the alloted time. The following are some of the known things that were left out and or I did not get a chance to fix / tweak.
 
 - Could not get the score to dynamically change when subtracting on the screen but, the time subtracts just fine. The actual variable and the local storage also seem to subtract just fine.
  
