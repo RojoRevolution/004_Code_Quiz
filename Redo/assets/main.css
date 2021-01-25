@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
+
+
+/* Helper Classes */
+.center-content {
+    margin: 0 auto;
+}
+
+.main-content {
+    max-width:600px;
+}
