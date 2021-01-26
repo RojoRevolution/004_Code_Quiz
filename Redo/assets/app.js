@@ -222,5 +222,7 @@ viewScoreBtn.addEventListener('click', () => {
 closeIcon.addEventListener('click', () => {
     viewScoreBtn.classList.remove('hide');
     quizContentDiv.classList.remove('hide');
+    introSection.classList.remove('hide');
+    gameEndContainer.classList.add('hide');
     highScoreDiv.classList.add('hide');
 })
