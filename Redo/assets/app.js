@@ -34,7 +34,7 @@ let highScore = []
 
 console.log(allQuestions.length)
 //Variables
-const quizContentEl = document.getElementById('quizContent')
+const quizContentEl = document.getElementById('quizContent');
 const scoreAndTime = document.getElementById('scoreTime');
 const introSection = document.getElementById('intro-content');
 const questionContainer = document.getElementById('questions');
@@ -44,10 +44,13 @@ const timeEl = document.getElementById('timer');
 const scoreEl = document.getElementById('score');
 const yourScoreEl = document.getElementById('yourScore');
 const nameEl = document.getElementById('name');
-const scoreBtn = document.getElementById('submitScore')
+const scoreBtn = document.getElementById('submitScore');
 const startBtn = document.getElementById('startBtn');
-const scoreListEl = document.getElementById('scoreList')
-const highScoreDiv = document.getElementById('highScores')
+const scoreListEl = document.getElementById('scoreList');
+const highScoreDiv = document.getElementById('highScores');
+const quizContentDiv = document.getElementById('quizContent');
+const viewScoreBtn = document.getElementById('viewScores');
+const closeIcon = document.getElementById('close');
 
 
 // incrementing variables
@@ -77,9 +80,6 @@ setTime = () => {
 
 };
 
-startQuiz = () => {
-
-}
 
 
 //===============================================================
@@ -209,4 +209,16 @@ scoreBtn.addEventListener('click', (event) => {
     let scoreLI = document.createElement('li');
     scoreLI.innerText = player;
     scoreListEl.append(scoreLI)
+});
+
+viewScoreBtn.addEventListener('click', () => {
+    viewScoreBtn.classList.add('hide');
+    quizContentDiv.classList.add('hide');
+    highScoreDiv.classList.remove('hide');
+});
+
+closeIcon.addEventListener('click', () => {
+    viewScoreBtn.classList.remove('hide');
+    quizContentDiv.classList.remove('hide');
+    highScoreDiv.classList.add('hide');
 })
