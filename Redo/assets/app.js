@@ -46,14 +46,34 @@ questionContent.addEventListener('click', (event) => {
     event.preventDefault();
     var btnValue = event.target.value;
     console.log(btnValue)
-})
+
+    // Answer Validation
+    let answerImage = document.createElement('img')
+
+    if (btnValue === allQuestions[currentQuestion].answer) {
+        answerImage.src = 'assets/images/correct.png';
+        answerImage.alt = 'You answered correctly!';
+        answerImage.setAttribute('class', 'answer-img')
+        resetState()
+        questionContent.appendChild(answerImage)
+    } else {
+        answerImage.src = 'assets/images/wrong.png';
+        answerImage.alt = 'You answered correctly!';
+        answerImage.setAttribute('class', 'answer-img')
+        resetState()
+        questionContent.appendChild(answerImage)
+    }
+
+    currentQuestion++;
+    setTimeout(function () { renderQuiz(); }, 1000);
+});
 
 
 
 // Render's Questions
 renderQuiz = () => {
-    //Render Question
-    console.log('Render Start')
+    resetState()
+
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
     // questionHeader.setAttribute('value', [i])
@@ -67,6 +87,14 @@ renderQuiz = () => {
         choiceBtn.setAttribute("class", "btn btn-secondary me-2 mt-2");
         choiceBtn.setAttribute("value", [i]);
         questionContent.appendChild(choiceBtn);
+    }
+}
+
+//===============================================================
+//Deletes the dynamic elements
+function resetState() {
+    while (questionContent.firstChild) {
+        questionContent.removeChild(questionContent.firstChild);
     }
 }
 
