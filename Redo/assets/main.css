@@ -5,6 +5,10 @@
 
 
 /* Helper Classes */
+.hide {
+    display:none;
+}
+
 .center-content {
     margin: 0 auto;
 }

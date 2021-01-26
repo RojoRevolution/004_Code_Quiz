@@ -28,3 +28,26 @@ var allQuestions = [{
     answer: '0',
 }
 ];
+
+//Variables
+const scoreAndTime = document.getElementById('scoreTime')
+const introSection = document.getElementById('intro-content')
+const startBtn = document.getElementById('startBtn');
+
+// incrementing variables
+let currentQuestion = 0;
+let Score = 0;
+let maxTime = 60;
+
+// Render's Questions
+renderQuiz = () => {
+
+}
+
+
+// Event Listeners
+startBtn.addEventListener("click", () => {
+    console.log("Start Button Clicked")
+    scoreAndTime.removeAttribute('class', 'hide');
+    introSection.setAttribute('class', 'hide');
+})
