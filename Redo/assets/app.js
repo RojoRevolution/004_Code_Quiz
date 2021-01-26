@@ -31,16 +31,18 @@ var allQuestions = [{
 
 console.log(allQuestions.length)
 //Variables
-const scoreAndTime = document.getElementById('scoreTime')
-const introSection = document.getElementById('intro-content')
-const questionContainer = document.getElementById('questions')
-const questionContent = document.getElementById('question-container')
-const gameEndContainer = document.getElementById('gameOver')
+const scoreAndTime = document.getElementById('scoreTime');
+const introSection = document.getElementById('intro-content');
+const questionContainer = document.getElementById('questions');
+const questionContent = document.getElementById('question-container');
+const gameEndContainer = document.getElementById('gameOver');
+const timeEl = document.getElementById('timer');
+const scoreEl = document.getElementById('score')
 const startBtn = document.getElementById('startBtn');
 
 // incrementing variables
 let currentQuestion = 0;
-let Score = 0;
+let score = 0;
 let maxTime = 60;
 
 //Answer Click Event - Event Delegation
@@ -50,21 +52,27 @@ questionContent.addEventListener('click', (event) => {
 
     // Answer Validation
     let answerImage = document.createElement('img')
+    answerImage.setAttribute('class', 'answer-img')
 
     if (btnValue === allQuestions[currentQuestion].answer) {
+        // updates the score
+        score += 20;
+        scoreEl.innerText = score;
         answerImage.src = 'assets/images/correct.png';
         answerImage.alt = 'You answered correctly!';
-        answerImage.setAttribute('class', 'answer-img')
-        resetState()
-        questionContent.appendChild(answerImage)
     } else {
+        // Updates the score
+        if (score >= 10) {
+            score -= 10;
+            scoreEl.innerText = score;
+        }
         answerImage.src = 'assets/images/wrong.png';
         answerImage.alt = 'You answered correctly!';
-        answerImage.setAttribute('class', 'answer-img')
-        resetState()
-        questionContent.appendChild(answerImage)
     }
-
+    //Appends the image based on the if..else above
+    resetState()
+    questionContent.appendChild(answerImage)
+    // Updates the question #
     currentQuestion++;
     // check if game over or render the next question
     setTimeout(() => {
@@ -82,14 +90,8 @@ questionContent.addEventListener('click', (event) => {
 // Render's Questions
 renderQuiz = () => {
     resetState()
-    // Check if game over
-    // if (currentQuestion > allQuestions.length) {
-    //     console.log('Run Game Over')
-    //     gameOver();
-    // }
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
-    // questionHeader.setAttribute('value', [i])
     questionHeader.innerHTML = askQuestion;
     questionContent.appendChild(questionHeader)
     // Render Choices
