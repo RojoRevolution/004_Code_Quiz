@@ -3,16 +3,15 @@ var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
     choices: ['<script>', '<scripting>', '<javascript>', '<link script>'],
     answer: '0',
-},
-{
-    question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ['<script name="xxx.js">', '<script href="xxx.js">', '<script src="xxx.js">'],
-    answer: '2',
-}, {
-    question: "3. The external JavaScript file must contain the < script > tag.",
-    choices: ['True', 'False',],
-    answer: '1',
-},
+}//, {
+    //     question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
+    //     choices: ['<script name="xxx.js">', '<script href="xxx.js">', '<script src="xxx.js">'],
+    //     answer: '2',
+    // }, {
+    //     question: "3. The external JavaScript file must contain the < script > tag.",
+    //     choices: ['True', 'False',],
+    //     answer: '1',
+    // },
     // {
     //     question: "5. How do you write 'Hello World' in an alert box?",
     //     choices: ['alertBox("Hello World")', 'msg("Hello World:)', 'alert("Hello World)', 'msgBox("Hello World")'],
@@ -53,34 +52,10 @@ const highScoreDiv = document.getElementById('highScores')
 // incrementing variables
 let currentQuestion = 0;
 let score = 0;
-let timeLimit = 60;
+let maxTime = 60;
 
 
 init();
-
-
-//===============================================================
-//Sets the timer
-setTime = () => {
-    //inner function sets the time interval for 1second
-    var timerInterval = setInterval(function () {
-        //time limit descreses every second by 1
-        timeLimit--;
-        //renders the time to the page
-        timeEl.textContent = `${timeLimit}`;
-        if (timeLimit <= 0) {
-            clearInterval(timerInterval);
-            timeLimit = 50
-            gameOver();
-        }
-    }, 1000);
-
-};
-
-startQuiz = () => {
-
-}
-
 
 //===============================================================
 //Answer Click Event - Event Delegation
@@ -130,7 +105,6 @@ questionContent.addEventListener('click', (event) => {
 // Render's Questions
 renderQuiz = () => {
     resetState()
-    setTime();
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
     questionHeader.innerHTML = askQuestion;
@@ -163,6 +137,10 @@ gameOver = () => {
     scoreAndTime.setAttribute('class', 'hide');
     questionContainer.setAttribute('class', 'hide');
     gameEndContainer.removeAttribute('class', 'hide');
+    // let playerName = nameEl.innerText;
+    // console.log(playerName)
+    // let player = [playerName, yourScore]
+    // console.log(player)
 }
 
 //===============================================================
@@ -186,10 +164,10 @@ function init() {
 // Event Listeners
 <<<<<<< HEAD
 
+
 // Click Event for Start Button
 startBtn.addEventListener('click', () => {
     scoreAndTime.classList.remove('class', 'hide');
-    viewScoreBtn.classList.add('class', 'hide');
     introSection.classList.add('class', 'hide');
     questionContainer.classList.remove('class', 'hide');
 =======
@@ -201,6 +179,7 @@ startBtn.addEventListener('click', () => {
     renderQuiz();
 })
 
+//===============================================================
 // Click event for entering your name at the end
 scoreBtn.addEventListener('click', (event) => {
     event.preventDefault();
