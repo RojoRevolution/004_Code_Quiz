@@ -25,7 +25,7 @@
     </header>
     <!-- Main Content -->
     <main class="container-fluid">
-        <div class="container my-5">
+        <div id="quizContent" class="container my-5">
             <div class="card p-2 main-content center-content">
                 <!-- Score and Time Left -->
                 <div id="scoreTime" class="card-body hide">
@@ -68,15 +68,13 @@
                 </div>
             </div>
         </div>
-        <section id="highScores" class="container-fluid">
+        <section id="highScores" class="container-fluid hide">
             <div class="container my-5">
                 <div class="card p-2 main-content center-content">
                     <div id="scoreTime" class="card-body text-center">
                         <h3>Recent Scores</h3>
                         <ul id="scoreList">
-                            <!-- <li>Dave - 120pts</li>
-                            <li>Jimmy - 80pts</li>
-                            <li>Juan - 30pts</li> -->
+                            <!-- Score list rendered here -->
                         </ul>
                     </div>
                 </div>

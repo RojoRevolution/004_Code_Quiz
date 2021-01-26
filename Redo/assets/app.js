@@ -33,6 +33,7 @@ let highScore = []
 
 console.log(allQuestions.length)
 //Variables
+const quizContentEl = document.getElementById('quizContent')
 const scoreAndTime = document.getElementById('scoreTime');
 const introSection = document.getElementById('intro-content');
 const questionContainer = document.getElementById('questions');
@@ -45,6 +46,7 @@ const nameEl = document.getElementById('name');
 const scoreBtn = document.getElementById('submitScore')
 const startBtn = document.getElementById('startBtn');
 const scoreListEl = document.getElementById('scoreList')
+const highScoreDiv = document.getElementById('highScores')
 
 
 // incrementing variables
@@ -55,6 +57,7 @@ let maxTime = 60;
 
 init();
 
+//===============================================================
 //Answer Click Event - Event Delegation
 questionContent.addEventListener('click', (event) => {
     event.preventDefault();
@@ -98,7 +101,7 @@ questionContent.addEventListener('click', (event) => {
 });
 
 
-
+//===============================================================
 // Render's Questions
 renderQuiz = () => {
     resetState()
@@ -141,11 +144,8 @@ gameOver = () => {
 }
 
 //===============================================================
-//High Scores
-// highScores = () => {
-//     let scoreLI = document.createElement('li');
-// }
 
+//Gets Local storage and renders score list if available
 function init() {
     let storedScoreList = JSON.parse(localStorage.getItem('storedScores'))
     if (storedScoreList !== null) {
@@ -160,6 +160,7 @@ function init() {
     } else { return }
 }
 
+//===============================================================
 // Event Listeners
 startBtn.addEventListener('click', () => {
     scoreAndTime.removeAttribute('class', 'hide');
@@ -168,17 +169,16 @@ startBtn.addEventListener('click', () => {
     renderQuiz();
 })
 
+//===============================================================
 // Click event for entering your name at the end
 scoreBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    // console.log(storedScoreList)
-    // highScore = storedScoreList;
-    // console.log(highScore);
+    quizContentEl.setAttribute('class', 'hide');
+    highScoreDiv.removeAttribute('class', 'hide');
     let playerName = nameEl.value;
     let player = `${yourScore} Points - ${playerName}`
     //Push the name + score to the highScore array
     highScore.push(player)
-    // console.log(highScore.length)
     localStorage.setItem('storedScores', JSON.stringify(highScore))
 
     // Append Score list
