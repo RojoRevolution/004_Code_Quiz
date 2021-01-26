@@ -48,8 +48,6 @@ const scoreBtn = document.getElementById('submitScore')
 const startBtn = document.getElementById('startBtn');
 const scoreListEl = document.getElementById('scoreList')
 const highScoreDiv = document.getElementById('highScores')
-const viewScoreBtn = document.getElementById('viewScore')
-const closeBtn = document.getElementById('closeBtn')
 
 
 // incrementing variables
@@ -199,8 +197,8 @@ startBtn.addEventListener('click', () => {
 // Click event for entering your name at the end
 scoreBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    quizContentEl.classList.add('class', 'hide');
-    highScoreDiv.classList.remove('class', 'hide');
+    quizContentEl.setAttribute('class', 'hide');
+    highScoreDiv.removeAttribute('class', 'hide');
     let playerName = nameEl.value;
     let player = `${yourScore} Points - ${playerName}`
     //Push the name + score to the highScore array
@@ -211,18 +209,4 @@ scoreBtn.addEventListener('click', (event) => {
     let scoreLI = document.createElement('li');
     scoreLI.innerText = player;
     scoreListEl.append(scoreLI)
-})
-
-// View Score Button
-viewScoreBtn.addEventListener('click', () => {
-    viewScoreBtn.classList.add('class', 'hide');
-    quizContentEl.classList.add('class', 'hide');
-    highScoreDiv.classList.remove('class', 'hide');
-})
-
-// Toggle between the start and the score list
-closeBtn.addEventListener('click', () => {
-    viewScoreBtn.classList.remove('class', 'hide');
-    quizContentEl.classList.remove('class', 'hide');
-    highScoreDiv.classList.add('class', 'hide');
 })

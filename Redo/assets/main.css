@@ -21,22 +21,6 @@ li:nth-child(even) {
     display:none;
 }
 
-.relative {
-    position: relative;
-}
-
-.btn-absolute {
-    position: absolute;
-    top:10px;
-    left: 10px;
-}
-
-.close-icon {
-    position: absolute;
-    top:10px;
-    right: 10px;
-}
-
 .center-content {
     margin: 0 auto;
 }
@@ -49,6 +33,3 @@ li:nth-child(even) {
     width: 195px;
 }
 
-.pointer {
-    cursor: pointer;
-}
