@@ -1,7 +1,7 @@
 //Questions, Choices, and an Answer key
 var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
-    choices: ['<script>', '<scripting>', '<javascript>'],
+    choices: ['<script>', '<scripting>', '<javascript>', '<link script>'],
     answer: '0',
 }, {
     question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
@@ -40,17 +40,24 @@ let currentQuestion = 0;
 let Score = 0;
 let maxTime = 60;
 
+//Answer Click Event - Event Delegation
+
+
+
+
 // Render's Questions
 renderQuiz = () => {
     //Render Question
+    console.log('Render Start')
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
-    questionHeader.setAttribute('value', [i])
+    // questionHeader.setAttribute('value', [i])
     questionHeader.innerHTML = askQuestion;
     questionContent.appendChild(questionHeader)
     // Render Choices
     let showChoices = allQuestions[currentQuestion].choices;
     for (let i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
+        console.log('Choice ' + [i])
         let choiceBtn = document.createElement('button');
         choiceBtn.textContent = showChoices[i];
         choiceBtn.setAttribute("class", "btn btn-secondary me-2 mt-2");
@@ -64,4 +71,5 @@ renderQuiz = () => {
 startBtn.addEventListener("click", () => {
     scoreAndTime.removeAttribute('class', 'hide');
     introSection.setAttribute('class', 'hide');
+    renderQuiz();
 })
