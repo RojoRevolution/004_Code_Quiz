@@ -34,6 +34,7 @@ const scoreAndTime = document.getElementById('scoreTime')
 const introSection = document.getElementById('intro-content')
 const questionContainer = document.getElementById('questions')
 const questionContent = document.getElementById('question-container')
+const gameEndContainer = document.getElementById('gameOver')
 const startBtn = document.getElementById('startBtn');
 
 // incrementing variables
@@ -73,6 +74,7 @@ questionContent.addEventListener('click', (event) => {
 // Render's Questions
 renderQuiz = () => {
     resetState()
+    // Check if game over
 
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
@@ -92,10 +94,18 @@ renderQuiz = () => {
 
 //===============================================================
 //Deletes the dynamic elements
-function resetState() {
+resetState = () => {
     while (questionContent.firstChild) {
         questionContent.removeChild(questionContent.firstChild);
     }
+}
+
+//===============================================================
+//Game Over
+gameOver = () => {
+    scoreAndTime.setAttribute('class', 'hide');
+    questionContainer.setAttribute('class', 'hide');
+    gameEndContainer.removeAttribute('class', 'hide');
 }
 
 
