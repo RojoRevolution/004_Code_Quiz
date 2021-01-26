@@ -14,7 +14,8 @@
 
 <body class="bg-light">
     <!-- Header -->
-    <header class="container-fluid bg-primary p-5">
+    <header class="container-fluid bg-primary p-5 relative">
+        <button id="viewScore" type="button" class="btn btn-outline-light btn-sm btn-absolute">View high Scores</button>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -70,7 +71,9 @@
         </div>
         <section id="highScores" class="container-fluid hide">
             <div class="container my-5">
-                <div class="card p-2 main-content center-content">
+                <div class="card p-2 main-content center-content relative">
+                    <button id="closeBtn" type="button" class="btn-close close-icon pointer"
+                        aria-label="Close"></button>
                     <div id="scoreTime" class="card-body text-center">
                         <h3>Recent Scores</h3>
                         <ul id="scoreList">
