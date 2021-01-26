@@ -26,12 +26,16 @@
     <!-- Main Content -->
     <main class="container-fluid">
         <div class="container my-5">
-            <div class="card p5 main-content center-content">
+            <div class="card p-2 main-content center-content">
                 <!-- Score and Time Left -->
                 <div id="scoreTime" class="card-body hide">
-                    <div class="row p-3">
-                        <div class="col-6">Time Left:</div>
-                        <div class="col-6 text-end">Your Score:</div>
+                    <div class="row">
+                        <div class="col-6 p-3"><span class="badge bg-warning p-2 text-dark">Time:<span
+                                    id="timer"></span></span>
+                        </div>
+                        <div class="col-6 p-3 text-end"><span class="badge bg-info p-2 text-dark">Score:<span
+                                    id="score"></span></span>
+                        </div>
                     </div>
                 </div>
                 <!-- Introductory Content -->
@@ -46,13 +50,9 @@
                     </div>
                 </div>
                 <!-- Quiz Questins -->
-                <div id="questions" class="p-3">
-                    <div id="question-container" class="card-body">
-                        <!-- <h2>Question will go here:</h2>
-                        <button class="btn btn-secondary me-2 mt-2">Option 1</button>
-                        <button class="btn btn-secondary me-2 mt-2">Option 2</button>
-                        <button class="btn btn-secondary me-2 mt-2">Option 3</button>
-                        <button class="btn btn-secondary me-2 mt-2">Option 3</button> -->
+                <div id="questions" class="p-3 hide">
+                    <div id="question-container" class="card-body p-3">
+                        <!-- Dynamic Content Goes Here -->
                     </div>
                 </div>
             </div>

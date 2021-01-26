@@ -32,6 +32,7 @@ var allQuestions = [{
 //Variables
 const scoreAndTime = document.getElementById('scoreTime')
 const introSection = document.getElementById('intro-content')
+const questionContainer = document.getElementById('questions')
 const questionContent = document.getElementById('question-container')
 const startBtn = document.getElementById('startBtn');
 
@@ -74,5 +75,6 @@ renderQuiz = () => {
 startBtn.addEventListener("click", () => {
     scoreAndTime.removeAttribute('class', 'hide');
     introSection.setAttribute('class', 'hide');
+    questionContainer.removeAttribute('class', 'hide');
     renderQuiz();
 })
