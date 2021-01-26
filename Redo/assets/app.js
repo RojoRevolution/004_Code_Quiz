@@ -29,6 +29,7 @@ var allQuestions = [{
 }
 ];
 
+console.log(allQuestions.length)
 //Variables
 const scoreAndTime = document.getElementById('scoreTime')
 const introSection = document.getElementById('intro-content')
@@ -46,7 +47,6 @@ let maxTime = 60;
 questionContent.addEventListener('click', (event) => {
     event.preventDefault();
     var btnValue = event.target.value;
-    console.log(btnValue)
 
     // Answer Validation
     let answerImage = document.createElement('img')
@@ -66,7 +66,15 @@ questionContent.addEventListener('click', (event) => {
     }
 
     currentQuestion++;
-    setTimeout(function () { renderQuiz(); }, 1000);
+    // check if game over or render the next question
+    setTimeout(() => {
+        if (currentQuestion > allQuestions.length - 1) {
+            console.log('Run Game Over')
+            gameOver();
+        } else {
+            renderQuiz();
+        }
+    }, 1000);
 });
 
 
@@ -75,7 +83,10 @@ questionContent.addEventListener('click', (event) => {
 renderQuiz = () => {
     resetState()
     // Check if game over
-
+    // if (currentQuestion > allQuestions.length) {
+    //     console.log('Run Game Over')
+    //     gameOver();
+    // }
     let askQuestion = allQuestions[currentQuestion].question;
     let questionHeader = document.createElement('h2');
     // questionHeader.setAttribute('value', [i])
