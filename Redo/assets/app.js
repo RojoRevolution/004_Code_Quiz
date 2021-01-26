@@ -41,7 +41,11 @@ let Score = 0;
 let maxTime = 60;
 
 //Answer Click Event - Event Delegation
-
+questionContent.addEventListener('click', (event) => {
+    event.preventDefault();
+    var btnValue = event.target.value;
+    console.log(btnValue)
+})
 
 
 
@@ -57,7 +61,6 @@ renderQuiz = () => {
     // Render Choices
     let showChoices = allQuestions[currentQuestion].choices;
     for (let i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
-        console.log('Choice ' + [i])
         let choiceBtn = document.createElement('button');
         choiceBtn.textContent = showChoices[i];
         choiceBtn.setAttribute("class", "btn btn-secondary me-2 mt-2");
