@@ -69,9 +69,10 @@ setTime = () => {
     var timerInterval = setInterval(function () {
         //time limit descreses every second by 1
         timeLimit--;
+        console.log(timeLimit);
         //renders the time to the page
         timeEl.textContent = `${timeLimit}`;
-        if (timeLimit <= 0) {
+        if (timeLimit <= 0 || currentQuestion > allQuestions.length - 1) {
             clearInterval(timerInterval);
             timeLimit = 50
             gameOver();
@@ -160,9 +161,9 @@ gameOver = () => {
     // get Score from LS
     yourScore = localStorage.getItem("Score", score);
     yourScoreEl.innerText = yourScore;
-    scoreAndTime.setAttribute('class', 'hide');
-    questionContainer.setAttribute('class', 'hide');
-    gameEndContainer.removeAttribute('class', 'hide');
+    scoreAndTime.classList.add('hide');
+    questionContainer.classList.add('hide');
+    gameEndContainer.classList.remove('hide');
 }
 
 //===============================================================
@@ -187,18 +188,19 @@ function init() {
 
 // Click Event for Start Button
 startBtn.addEventListener('click', () => {
-    scoreAndTime.classList.remove('class', 'hide');
-    viewScoreBtn.classList.add('class', 'hide');
-    introSection.classList.add('class', 'hide');
-    questionContainer.classList.remove('class', 'hide');
+    localStorage.setItem("Score", score);
+    scoreAndTime.classList.remove('hide');
+    viewScoreBtn.classList.add('hide');
+    introSection.classList.add('hide');
+    questionContainer.classList.remove('hide');
     renderQuiz();
 })
 
 // Click event for entering your name at the end
 scoreBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    quizContentEl.setAttribute('class', 'hide');
-    highScoreDiv.removeAttribute('class', 'hide');
+    quizContentEl.classList.add('hide');
+    highScoreDiv.classList.remove('hide');
     let playerName = nameEl.value;
     let player = `${yourScore} Points - ${playerName}`
     //Push the name + score to the highScore array
