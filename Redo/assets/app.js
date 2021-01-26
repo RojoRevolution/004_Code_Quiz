@@ -184,6 +184,7 @@ function init() {
 
 //===============================================================
 // Event Listeners
+<<<<<<< HEAD
 
 // Click Event for Start Button
 startBtn.addEventListener('click', () => {
@@ -191,6 +192,12 @@ startBtn.addEventListener('click', () => {
     viewScoreBtn.classList.add('class', 'hide');
     introSection.classList.add('class', 'hide');
     questionContainer.classList.remove('class', 'hide');
+=======
+startBtn.addEventListener('click', () => {
+    scoreAndTime.removeAttribute('class', 'hide');
+    introSection.setAttribute('class', 'hide');
+    questionContainer.removeAttribute('class', 'hide');
+>>>>>>> parent of 0add226... completed functionality for hide / show score list from the main screen
     renderQuiz();
 })
 
