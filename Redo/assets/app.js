@@ -3,31 +3,33 @@ var allQuestions = [{
     question: "1. Inside which HTML element do we put the JavaScript?",
     choices: ['<script>', '<scripting>', '<javascript>', '<link script>'],
     answer: '0',
-}, {
-    question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ['<script name="xxx.js">', '<script href="xxx.js">', '<script src="xxx.js">'],
-    answer: '2',
-}, {
-    question: "3. The external JavaScript file must contain the < script > tag.",
-    choices: ['True', 'False',],
-    answer: '1',
-},
-{
-    question: "5. How do you write 'Hello World' in an alert box?",
-    choices: ['alertBox("Hello World")', 'msg("Hello World:)', 'alert("Hello World)', 'msgBox("Hello World")'],
-    answer: '2',
-},
-{
-    question: "5. How do you create a function in JavaScript?",
-    choices: ['function:myFunction()', 'function = myFunction()', 'function myFunction()'],
-    answer: '2',
-},
-{
-    question: "5. How do you call a function in JavaScript?",
-    choices: ['myFunction()', 'call function myFunction()', 'call myFunction()'],
-    answer: '0',
-}
+}//, {
+    //     question: "2. What is the correct syntax for referring to an external script called 'xxx.js'?",
+    //     choices: ['<script name="xxx.js">', '<script href="xxx.js">', '<script src="xxx.js">'],
+    //     answer: '2',
+    // }, {
+    //     question: "3. The external JavaScript file must contain the < script > tag.",
+    //     choices: ['True', 'False',],
+    //     answer: '1',
+    // },
+    // {
+    //     question: "5. How do you write 'Hello World' in an alert box?",
+    //     choices: ['alertBox("Hello World")', 'msg("Hello World:)', 'alert("Hello World)', 'msgBox("Hello World")'],
+    //     answer: '2',
+    // },
+    // {
+    //     question: "5. How do you create a function in JavaScript?",
+    //     choices: ['function:myFunction()', 'function = myFunction()', 'function myFunction()'],
+    //     answer: '2',
+    // },
+    // {
+    //     question: "5. How do you call a function in JavaScript?",
+    //     choices: ['myFunction()', 'call function myFunction()', 'call myFunction()'],
+    //     answer: '0',
+    // }
 ];
+
+let highScore = []
 
 console.log(allQuestions.length)
 //Variables
@@ -37,13 +39,21 @@ const questionContainer = document.getElementById('questions');
 const questionContent = document.getElementById('question-container');
 const gameEndContainer = document.getElementById('gameOver');
 const timeEl = document.getElementById('timer');
-const scoreEl = document.getElementById('score')
+const scoreEl = document.getElementById('score');
+const yourScoreEl = document.getElementById('yourScore');
+const nameEl = document.getElementById('name');
+const scoreBtn = document.getElementById('submitScore')
 const startBtn = document.getElementById('startBtn');
+const scoreListEl = document.getElementById('scoreList')
+
 
 // incrementing variables
 let currentQuestion = 0;
 let score = 0;
 let maxTime = 60;
+
+
+init();
 
 //Answer Click Event - Event Delegation
 questionContent.addEventListener('click', (event) => {
@@ -74,6 +84,8 @@ questionContent.addEventListener('click', (event) => {
     questionContent.appendChild(answerImage)
     // Updates the question #
     currentQuestion++;
+    //  Sends score to LS
+    localStorage.setItem("Score", score);
     // check if game over or render the next question
     setTimeout(() => {
         if (currentQuestion > allQuestions.length - 1) {
@@ -116,16 +128,61 @@ resetState = () => {
 //===============================================================
 //Game Over
 gameOver = () => {
+    // get Score from LS
+    yourScore = localStorage.getItem("Score", score);
+    yourScoreEl.innerText = yourScore;
     scoreAndTime.setAttribute('class', 'hide');
     questionContainer.setAttribute('class', 'hide');
     gameEndContainer.removeAttribute('class', 'hide');
+    // let playerName = nameEl.innerText;
+    // console.log(playerName)
+    // let player = [playerName, yourScore]
+    // console.log(player)
 }
 
+//===============================================================
+//High Scores
+// highScores = () => {
+//     let scoreLI = document.createElement('li');
+// }
+
+function init() {
+    let storedScoreList = JSON.parse(localStorage.getItem('storedScores'))
+    if (storedScoreList !== null) {
+        highScore = storedScoreList;
+        console.log(highScore);
+        for (var i = 0; i < highScore.length; i++) {
+            let scoreLI = document.createElement('li');
+            scoreLI.textContent = `${highScore[i]}`;
+            console.log(scoreLI)
+            scoreListEl.append(scoreLI)
+        }
+    } else { return }
+}
 
 // Event Listeners
-startBtn.addEventListener("click", () => {
+startBtn.addEventListener('click', () => {
     scoreAndTime.removeAttribute('class', 'hide');
     introSection.setAttribute('class', 'hide');
     questionContainer.removeAttribute('class', 'hide');
     renderQuiz();
+})
+
+// Click event for entering your name at the end
+scoreBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    // console.log(storedScoreList)
+    // highScore = storedScoreList;
+    // console.log(highScore);
+    let playerName = nameEl.value;
+    let player = `${yourScore} Points - ${playerName}`
+    //Push the name + score to the highScore array
+    highScore.push(player)
+    // console.log(highScore.length)
+    localStorage.setItem('storedScores', JSON.stringify(highScore))
+
+    // Append Score list
+    let scoreLI = document.createElement('li');
+    scoreLI.innerText = player;
+    scoreListEl.append(scoreLI)
 })

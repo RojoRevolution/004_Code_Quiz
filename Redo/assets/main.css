@@ -2,7 +2,19 @@
     box-sizing: border-box;
 }
 
+ul {
+    padding: 0;
+}
 
+li {
+    list-style:none;
+    background-color:#ececec;
+    padding:10px;
+}
+
+li:nth-child(even) {
+    background-color:#ffffff;
+}
 
 /* Helper Classes */
 .hide {
@@ -20,3 +32,4 @@
 .answer-img {
     width: 195px;
 }
+
