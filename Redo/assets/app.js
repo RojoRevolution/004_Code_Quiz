@@ -32,6 +32,7 @@ var allQuestions = [{
 //Variables
 const scoreAndTime = document.getElementById('scoreTime')
 const introSection = document.getElementById('intro-content')
+const questionContent = document.getElementById('question-container')
 const startBtn = document.getElementById('startBtn');
 
 // incrementing variables
@@ -41,13 +42,26 @@ let maxTime = 60;
 
 // Render's Questions
 renderQuiz = () => {
-
+    //Render Question
+    let askQuestion = allQuestions[currentQuestion].question;
+    let questionHeader = document.createElement('h2');
+    questionHeader.setAttribute('value', [i])
+    questionHeader.innerHTML = askQuestion;
+    questionContent.appendChild(questionHeader)
+    // Render Choices
+    let showChoices = allQuestions[currentQuestion].choices;
+    for (let i = 0; i < allQuestions[currentQuestion].choices.length; i++) {
+        let choiceBtn = document.createElement('button');
+        choiceBtn.textContent = showChoices[i];
+        choiceBtn.setAttribute("class", "btn btn-secondary me-2 mt-2");
+        choiceBtn.setAttribute("value", [i]);
+        questionContent.appendChild(choiceBtn);
+    }
 }
 
 
 // Event Listeners
 startBtn.addEventListener("click", () => {
-    console.log("Start Button Clicked")
     scoreAndTime.removeAttribute('class', 'hide');
     introSection.setAttribute('class', 'hide');
 })
