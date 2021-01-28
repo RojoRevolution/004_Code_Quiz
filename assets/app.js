@@ -51,6 +51,7 @@ const highScoreDiv = document.getElementById('highScores');
 const quizContentDiv = document.getElementById('quizContent');
 const viewScoreBtn = document.getElementById('viewScores');
 const closeIcon = document.getElementById('close');
+const noScoresEl = document.getElementById('noScores')
 
 
 // incrementing variables
@@ -172,12 +173,16 @@ function init() {
     let storedScoreList = JSON.parse(localStorage.getItem('storedScores'))
     if (storedScoreList !== null) {
         highScore = storedScoreList;
+        // hide placeholder text
+        noScoresEl.classList.add('hide')
         for (var i = 0; i < highScore.length; i++) {
             let scoreLI = document.createElement('li');
             scoreLI.textContent = `${highScore[i]}`;
             scoreListEl.append(scoreLI)
         }
-    } else { return }
+    } else {
+        return
+    }
 }
 
 //===============================================================
@@ -204,6 +209,10 @@ scoreBtn.addEventListener('click', (event) => {
     //Push the name + score to the highScore array
     highScore.push(player)
     localStorage.setItem('storedScores', JSON.stringify(highScore))
+    // if placeholder text exists - add hide class
+    if (typeof (noScoresEl) != 'undefined' && noScoresEl != null) {
+        noScoresEl.classList.add('hide');
+    }
 
     // Append Score list
     let scoreLI = document.createElement('li');
